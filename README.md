@@ -13,7 +13,7 @@ Mário César Nascimento estuda **Game Design e desenvolvimento de jogos**. Este
 
 Projeto MOSAICO em desenvolvimento, com endereço oficial em **https://casa-da-costa.dragongames.dev.br** (GitHub Pages).
 Separado do repositório `Dragon` em 14/10/2026 — regra "um jogo = um repositório = um subdomínio"
-(ver `documentos/ORGANIZACAO-DRAGON.md` no Dragon).
+(ver [organização dos jogos](https://github.com/DrMarioNascimento/Dragon/blob/main/documentos/ORGANIZACAO-DRAGON.md)).
 
 | Endereço | Conteúdo | Origem no Dragon |
 |---|---|---|
@@ -27,8 +27,8 @@ Separado do repositório `Dragon` em 14/10/2026 — regra "um jogo = um reposit�
 Arquivos comuns copiados do Dragon (cópia própria deste jogo): `firebase-room.js`, `firebase-user.js`,
 `abertura-casa.js`, `hipoteses-por-camada.js`, `papel-camada.js`, `brand/`.
 
-Firebase: projetos `mosaico-game` (Mesa) e `mosaico-noite` (Noite) — os mesmos de antes.
-O domínio `casa-da-costa.dragongames.dev.br` precisa estar em *Authentication → Domínios autorizados* nos dois.
+Firebase: a Mesa (`a-mesa/MOSAICO-mesa.html`) e a Noite (`a-noite/room-shell.js`) usam `mosaico-game`; O Impostor usa `oimpostor-c30e0`. As configurações auxiliares herdadas não devem ser confundidas com a entrada efetivamente carregada por cada versão.
+O domínio `casa-da-costa.dragongames.dev.br` deve constar em *Authentication → Domínios autorizados* nos projetos usados por cada entrada. A presença do domínio no console não foi verificada nesta revisão documental.
 
 Testes: `npm test` (integridade dos caminhos). Os testes completos da Casa continuam no Dragon até a limpeza.
 
