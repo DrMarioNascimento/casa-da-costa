@@ -1,0 +1,10 @@
+{
+  "name": "casa-da-costa",
+  "version": "1.0.0",
+  "private": true,
+  "description": "A Casa da Costa — jogo MOSAICO da Dragon Games (A Mesa · O Impostor).",
+  "type": "module",
+  "scripts": {
+    "test": "node --test tests/caminhos.test.mjs"
+  }
+}
