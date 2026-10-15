@@ -300,7 +300,16 @@ async function formEntrar(err='',asMaster=false){
   document.getElementById('drEnter').onclick=()=>entrar(asMaster);
   setTimeout(()=>document.getElementById('drName')?.focus(),20)
 }
+/* 14/10/2026: toque duplo em Entrar. Enquanto o jogo carrega o caso e sorteia o
+   personagem, a tela não reagia; o segundo toque fazia uma segunda gravação, que
+   para o Firebase já é ALTERAÇÃO do jogador (nome, moedas, entrouMs) e as regras
+   recusam: "Missing or insufficient permissions". Agora o botão trava em
+   "Entrando…" e quem já tem lugar na sala volta sem regravar o que é do Mestre. */
+let entrando=false;
 async function entrar(asMaster=false){
+  if(entrando)return;entrando=true;
+  const btn=document.getElementById('drEnter');
+  if(btn){btn.disabled=true;btn.dataset.rotulo=btn.textContent;btn.textContent='Entrando…'}
   try{
     code=(document.getElementById('drCode').value||'').trim().toUpperCase();const nome=(document.getElementById('drName').value||'').trim(),forma=formaAtual();
     const MPC=window.MosaicoPapelCamada;
@@ -327,6 +336,12 @@ async function entrar(asMaster=false){
       await signOut(auth);
       u=(await signInAnonymously(auth)).user;
     }
+    /* SUBSTITUIDO 14/10: gravava sempre o jogador inteiro, mesmo quando ele já existia. */
+    const jaTem=asMaster?null:await getDoc(playerRef(code,u.uid)).catch(()=>null);
+    if(jaTem&&jaTem.exists()){
+      await updateDoc(playerRef(code,u.uid),{forma,pronto:true,papelCognitivo:escolha.papel,camadaAcessibilidade:escolha.camada,atualizadoEmMs:Date.now()});
+      role=(snap.data().mestreUid===u.uid)?'master':'guest';ouvir();return;
+    }
     const basePlayer={nome:nome.slice(0,24),forma,mestre:!!asMaster,pronto:true,papelCognitivo:escolha.papel,camadaAcessibilidade:escolha.camada,entrouMs:Date.now(),atualizadoEmMs:Date.now()};
     let extraPlayer={};
     try{
@@ -343,6 +358,7 @@ async function entrar(asMaster=false){
        Comparar o uid com mestreUid devolve a verdade em qualquer caminho. */
     role=(asMaster||snap.data().mestreUid===u.uid)?'master':'guest';ouvir();
   }catch(e){formEntrar(e?.message||'Não foi possível entrar.',asMaster)}
+  finally{entrando=false;const b2=document.getElementById('drEnter');if(b2&&b2.disabled){b2.disabled=false;b2.textContent=b2.dataset.rotulo||'Entrar'}}
 }
 /* SUBSTITUIDO 03/10, nos dois onSnapshot abaixo: `else atualizarSalaPersistente();` passou a avisar também
    os ouvintes do jogo (DragonSala.aoMudar). */
