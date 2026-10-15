@@ -1,5 +1,8 @@
 # MOSAICO · A Casa da Costa · Solo
 
+> Projeto em testes internos, sem participação externa. Esta versão pertence ao repositório `casa-da-costa`, separado do Dragon. Consulte o [README principal](../README.md) e a [licença do projeto](../LICENSE.md).
+
+
 O Solo é uma adaptação individual da sequência canônica publicada na Mesa.
 
 Esta experiência permanece preservada fora do catálogo principal do Dragon Games.
