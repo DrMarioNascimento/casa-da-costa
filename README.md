@@ -1,5 +1,9 @@
 # A Casa da Costa · Dragon Games
 
+## Situação atual — 19 de outubro de 2026
+
+A Casa da Costa tem repositório e domínio próprios, com A Mesa, O Impostor, A Noite e a adaptação Solo preservada. O Solo é documentado em [solo/README.md](solo/README.md). As cópias antigas no Dragon não substituem a manutenção aqui. O acesso aos jogos continua em testes internos; `npm test` cobre caminhos e não valida todos os fluxos de sala e RA.
+
 ## Desenvolvimento e acesso
 
 Os jogos estão em diferentes etapas de desenvolvimento, teste e aperfeiçoamento e ainda não foram lançados ao público. Nesta fase, os testes são realizados internamente, sem participação externa.

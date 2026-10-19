@@ -1,5 +1,11 @@
 # MOSAICO · A Casa da Costa · Solo
 
+## Manutenção e origem — 19 de outubro de 2026
+
+Esta versão é mantida no repositório próprio `casa-da-costa`. As cópias antigas no Dragon preservam a organização anterior. Consulte a entrada principal para os modos disponíveis, os endereços e a configuração de salas; a execução permanece limitada aos testes internos autorizados.
+
+Consulte o [README principal](../README.md) e a [licença da raiz](../LICENSE.md). Créditos e licenças específicos deste módulo permanecem nos documentos abaixo.
+
 > Projeto em testes internos, sem participação externa. Esta versão pertence ao repositório `casa-da-costa`, separado do Dragon. Consulte o [README principal](../README.md) e a [licença do projeto](../LICENSE.md).
 
 
