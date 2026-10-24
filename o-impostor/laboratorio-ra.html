@@ -7,6 +7,11 @@
 <meta name="robots" content="noindex"/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;800&family=Inter:wght@400;500&family=IBM+Plex+Mono:wght@500;700&display=swap" rel="stylesheet"/>
+<!-- 24/10/2026 · RA no iPhone: cada peça aponta para um USDZ pronto (ios-src, em modelos/ra-ios/).
+     Sem ele, o model-viewer convertia o GLB no momento do toque e, com a espera, o Safari tratava o
+     link como download de "model.usdz" em vez de abrir a RA. Os arquivos foram gerados pelo próprio
+     model-viewer 4.0.0 desta página (prepareUSDZ), na pose inicial de cada peça — o Quick Look não
+     leva animação. Ao trocar um GLB, gere o USDZ de novo. -->
 <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js"></script>
 <style>
 :root{--void:#070605;--coal:#110e0c;--plate:#1a1512;--cream:#f4ead0;--mist:#c9bba3;--gold:#e0b13a;--gold2:#f3d078;--lip:#7a4e0e;--ember:#ff6a18;--line:rgba(224,177,58,.22);--display:Cinzel,serif;--body:Inter,system-ui,sans-serif;--mono:"IBM Plex Mono",ui-monospace,monospace;color-scheme:dark}
@@ -46,7 +51,7 @@ footer{padding:20px 0 36px;border-top:1px solid var(--line);text-align:center;co
 
 <main class="shell grid">
   <section class="piece">
-    <model-viewer id="maquete" src="maquete/assets/ac/casa-o-impostor-pisos.glb" alt="Maquete da casa" camera-controls touch-action="pan-y" ar ar-modes="webxr scene-viewer quick-look" ar-placement="floor" shadow-intensity="1" exposure="1.05" camera-orbit="30deg 65deg auto">
+    <model-viewer id="maquete" src="maquete/assets/ac/casa-o-impostor-pisos.glb" alt="Maquete da casa" camera-controls touch-action="pan-y" ios-src="modelos/ra-ios/maquete.usdz" ar ar-modes="webxr scene-viewer quick-look" ar-placement="floor" shadow-intensity="1" exposure="1.05" camera-orbit="30deg 65deg auto">
       <button slot="ar-button" class="ar">Ver na sala</button>
     </model-viewer>
     <div class="info"><b>A maquete · Prólogo</b><p>Cópia independente da maquete de A Casa da Costa (pasta maquete/). Ainda com a lógica da AC; será adaptada para o Prólogo.</p>
@@ -64,7 +69,7 @@ footer{padding:20px 0 36px;border-top:1px solid var(--line);text-align:center;co
     </div>
   </section>
   <section class="piece">
-    <model-viewer id="relogio" src="modelos/relogio_caixa_alta_v2.glb" alt="Relógio de caixa alta" camera-controls touch-action="pan-y" ar ar-modes="webxr scene-viewer quick-look" ar-placement="floor" shadow-intensity="1" exposure="1.05" camera-orbit="20deg 80deg auto">
+    <model-viewer id="relogio" src="modelos/relogio_caixa_alta_v2.glb" alt="Relógio de caixa alta" camera-controls touch-action="pan-y" ios-src="modelos/ra-ios/relogio.usdz" ar ar-modes="webxr scene-viewer quick-look" ar-placement="floor" shadow-intensity="1" exposure="1.05" camera-orbit="20deg 80deg auto">
       <button slot="ar-button" class="ar">Ver na sala</button>
     </model-viewer>
     <div class="info"><b>O relógio de caixa alta</b><p>Quarto escuro. Estados da peça:</p>
@@ -82,7 +87,7 @@ footer{padding:20px 0 36px;border-top:1px solid var(--line);text-align:center;co
   </section>
 
   <section class="piece">
-    <model-viewer id="livro" src="modelos/livro_do_farol_v2.glb" alt="Livro do farol" camera-controls touch-action="pan-y" ar ar-modes="webxr scene-viewer quick-look" ar-placement="floor" shadow-intensity="1" exposure="1.1">
+    <model-viewer id="livro" src="modelos/livro_do_farol_v2.glb" alt="Livro do farol" camera-controls touch-action="pan-y" ios-src="modelos/ra-ios/livro.usdz" ar ar-modes="webxr scene-viewer quick-look" ar-placement="floor" shadow-intensity="1" exposure="1.1">
       <button slot="ar-button" class="ar">Ver na mesa</button>
     </model-viewer>
     <div class="info"><b>O livro do farol</b><p>Registro do faroleiro. Chega fechado.</p>
@@ -92,7 +97,7 @@ footer{padding:20px 0 36px;border-top:1px solid var(--line);text-align:center;co
   </section>
 
   <section class="piece">
-    <model-viewer id="farol" src="modelos/farol_v2.glb" alt="Farol" scale="0.02 0.02 0.02" camera-controls touch-action="pan-y" ar ar-modes="webxr scene-viewer quick-look" ar-placement="floor" ar-scale="auto" shadow-intensity="1" autoplay animation-name="feixe_giro_20s">
+    <model-viewer id="farol" src="modelos/farol_v2.glb" alt="Farol" scale="0.02 0.02 0.02" camera-controls touch-action="pan-y" ios-src="modelos/ra-ios/farol.usdz" ar ar-modes="webxr scene-viewer quick-look" ar-placement="floor" ar-scale="auto" shadow-intensity="1" autoplay animation-name="feixe_giro_20s">
       <button slot="ar-button" class="ar">Ver na mesa</button>
     </model-viewer>
     <div class="info"><b>O farol</b><p>Miniatura. O feixe dá uma volta a cada 20 segundos.</p>
@@ -101,7 +106,7 @@ footer{padding:20px 0 36px;border-top:1px solid var(--line);text-align:center;co
     </div>
   </section>
   <section class="piece">
-    <model-viewer id="quarto" src="modelos/quarto_de_servico_v2.glb" alt="Quarto de serviço" scale="0.2 0.2 0.2" camera-controls touch-action="pan-y" ar ar-modes="webxr scene-viewer quick-look" ar-placement="floor" ar-scale="auto" shadow-intensity="1" exposure="1.0" camera-orbit="200deg 55deg auto">
+    <model-viewer id="quarto" src="modelos/quarto_de_servico_v2.glb" alt="Quarto de serviço" scale="0.2 0.2 0.2" camera-controls touch-action="pan-y" ios-src="modelos/ra-ios/quarto.usdz" ar ar-modes="webxr scene-viewer quick-look" ar-placement="floor" ar-scale="auto" shadow-intensity="1" exposure="1.0" camera-orbit="200deg 55deg auto">
       <button slot="ar-button" class="ar">Ver na mesa</button>
     </model-viewer>
     <div class="info"><b>O quarto de serviço</b><p>Miniatura. Porta, maçaneta e variantes sorteadas:</p>
