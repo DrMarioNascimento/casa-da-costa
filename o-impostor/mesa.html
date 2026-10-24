@@ -1439,7 +1439,7 @@ var PECAS=[
 /* 02/10: com o farol no meio da lista, as peças se acham pelo nome, não pela posição */
 function peca(id){for(var i=0;i<PECAS.length;i++)if(PECAS[i].abrir===id)return PECAS[i];return {}}
 function pintarPecas(){$('#gradeRA').innerHTML=PECAS.map(function(p){
-  return '<a class="peca'+(p.tranca?' trancada':'')+'" '+(p.abrir&&!p.tranca?'data-abrir="'+p.abrir+'" href="#"':(p.href&&!p.tranca?'href="'+p.href+'"':''))+'><span class="ico">'+(p.tranca?'🔒':p.ico)+'</span><small>'+p.cap+'</small><b>'+p.nome+'</b><span>'+p.txt+'</span></a>';
+  return '<a class="peca'+(p.tranca?' trancada':'')+'" '+(p.abrir&&!p.tranca?'data-abrir="'+p.abrir+'" href="#"':(p.href&&!p.tranca?'href="'+p.href+'"':''))+'><span class="ico">'+(p.tranca?'<img src="../assets/icons/locks/closed-white.png" alt="" aria-hidden="true" style="display:inline-block;width:2.1em;height:2.1em;max-width:none;object-fit:contain;vertical-align:middle;flex-shrink:0">':p.ico)+'</span><small>'+p.cap+'</small><b>'+p.nome+'</b><span>'+p.txt+'</span></a>';
 }).join('');}
 pintarPecas();
 
@@ -4212,7 +4212,7 @@ if(Q.get('teste')==='1')window.__oiMesa={P:function(){return P_R2},papel:functio
   tipo:function(id){return tipoDe(id)},varia:function(ev){return variaEvento(ev)},falas:function(){return (window.OI_FALAS||[]).length},
   roteiro:function(n){return ROTEIROS[n]?ROTEIROS[n].roteiro.map(function(e){return [e[0],e[1],typeof e[2]==='string'?limpo(e[2]):e[2]]}):null},
   perguntas:function(n){return ROTEIROS[n]?ROTEIROS[n].perguntas():null},inventario:function(){return INVENTARIO.map(function(i){return i.nome})},
-  escuro:function(){return escuroAtivo},respostas:function(){return respostas},pecas:function(){return PECAS.map(function(p){return p.nome+(p.tranca?' 🔒':'')})}};
+  escuro:function(){return escuroAtivo},respostas:function(){return respostas},pecas:function(){return PECAS.map(function(p){return p.nome+(p.tranca?' (bloqueada)':'')})}};
 pintarGrupo();pintarListaPriv();
 })();
 </script>
