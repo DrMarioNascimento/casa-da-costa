@@ -1,6 +1,6 @@
 /* A casa viva: o que se move na maquete sem ser pista (three.js r128).
 
-   26/10/2026 (Mario: "movimento, ação onde couber, o máximo… que tenha
+   25/10/2026 (Mario: "movimento, ação onde couber, o máximo… que tenha
    relação com a história"). A noite é de tempestade; a casa reage a ela:
    - os VIDROS das janelas devolvem o clarão de cada raio (azul-frio, nunca o
      verde-água que no jogo quer dizer "pode tocar");

@@ -1324,7 +1324,7 @@
     }).then(function (m) {
       mundo = m;
       clima = RAClima.criar(mundo.raiz,{reduzido:reduzido,aoClarao:function(b){if(vida)vida.clarao(b);}});
-      /* 26/10/2026: a casa reage à noite — vidros, jasmim, fonte, fumaça e mar (ra-vida-casa.js). */
+      /* 25/10/2026: a casa reage à noite — vidros, jasmim, fonte, fumaça e mar (ra-vida-casa.js). */
       if (window.RAVidaCasa) vida = RAVidaCasa.criar(mundo, clima, { reduzido: reduzido });
       cena.add(mundo.raiz);
       /* A poeira mora DENTRO da maquete: acompanha escala, giro e pose. */

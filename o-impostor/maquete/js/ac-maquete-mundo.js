@@ -671,7 +671,7 @@
     if (chegadaAlinhada) raiz.updateMatrixWorld(true);
 
     var relogio = acertarRelogio(raiz);
-    /* 26/10/2026: onde sai a fumaça, medido ANTES de fundir (depois a chaminé
+    /* 25/10/2026: onde sai a fumaça, medido ANTES de fundir (depois a chaminé
        vira pedra sem nome). A maciça fica de fora: o capitel e os peitos dela
        são as fechaduras. */
     var marcosDaVida = marcarVida(raiz);

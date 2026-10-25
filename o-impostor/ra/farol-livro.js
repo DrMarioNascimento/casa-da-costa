@@ -153,7 +153,7 @@
       fim: function (x, y, c) { if (!c) b.estado('O rádio portátil do Faroleiro. Foi por ele que o farol falou com a casa naquela noite.');   /* SUBSTITUIDO 02/10 (Mario: o rádio só caracteriza o aparelho que o Faroleiro usou): 'Um rádio portátil, sintonizado no mesmo canal do rádio VHF da casa.' */ } });
     b.pega({ rotulo: 'Farol', alvo: function () { return farol; }, ativa: function () { return true; },
       fim: function (x, y, c) { if (!c) b.estado(aberta ? 'A portinha está aberta.' : 'O feixe dá uma volta a cada vinte segundos. Na torre, do lado oposto à placa, uma portinha de ferro.'); } });
-    /* 26/10/2026: o mar no rochedo, os vidros no clarão e o LED do rádio (farol-vida.js) */
+    /* 25/10/2026: o mar no rochedo, os vidros no clarão e o LED do rádio (farol-vida.js) */
     var vidaFarol=window.FarolVida?FarolVida.criar(b.raiz,farol,function(){return saiu?gRadio:null;}):null;
     var clima=RAClima.criar(b.raiz,{limites:[[-.5,0,-.4],[.5,.72,.4]],aoClarao:function(br){if(vidaFarol)vidaFarol.clarao(br);}});
     b.aCadaQuadro(function(dt){clima.update(dt);if(vidaFarol)vidaFarol.update(dt,clima.vento(clima.estado().tempo));});

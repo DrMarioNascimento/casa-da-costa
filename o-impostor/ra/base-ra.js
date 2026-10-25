@@ -340,7 +340,7 @@
       $('btDeNovo').onclick = function () { op.deNovo && op.deNovo(); };
       renderer.setAnimationLoop(desenhar);
       estado(op.textoInicio || '');
-      /* 26/10/2026: na primeira peça aberta neste aparelho, o que é cada coisa
+      /* 25/10/2026: na primeira peça aberta neste aparelho, o que é cada coisa
          na tela (guia-ra.js). Uma vez só, para todas as peças do Impostor. */
       if (global.GuiaRA) GuiaRA.mostrar('impostor-peca', [
         { alvo: '#cena', txt: 'Arraste com um dedo para girar a peça; com dois, aproxime ou afaste.' },

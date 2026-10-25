@@ -1,6 +1,6 @@
 /* O farol na tempestade (three.js r128).
 
-   26/10/2026 (Mario: "trovões, nevoeiro e chuva… Idem Farol"). Além do
+   25/10/2026 (Mario: "trovões, nevoeiro e chuva… Idem Farol"). Além do
    clima, três coisas que a história sustenta:
    - o MAR em volta do rochedo, agitado, quebrando em espuma na pedra (a noite
      da cheia, "a ponte caiu com a cheia"). Fica num fosso em volta da base:
