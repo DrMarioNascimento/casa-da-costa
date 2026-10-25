@@ -3791,15 +3791,27 @@ document.addEventListener('click',function(e){var a=e.target.closest('[data-abri
    Só se ensina o que é da tela (ler de perto, fotografar); o que se mexe na peça
    continua para o jogador descobrir. */
 /* 01/10 (regra de ensino): cada gesto novo é explicado uma vez, na primeira peça que o usa. */
+/* SUBSTITUIDO 25/10 (auditoria, item 8): a foto era explicada em quatro peças — no aparador
+   ('Novidade: um toque rápido num objeto tira uma foto dele. A foto vai para o seu inventário,
+   no clipe 📎 da conversa, e pode ser anexada a outro jogador.'), na escrivaninha ('Lembre: um
+   toque rápido num papel tira a foto dele.'), no farol ('…arrastando, e um toque na página tira
+   a foto dela.') e no quarto ('Um toque rápido num objeto tira a foto dele para o inventário.').
+   Agora ela sai da peça e entra uma vez só, na primeira peça com foto que o jogador abrir
+   (FOTO_PECAS), seja ela qual for. */
 var NOVIDADES={
-  bandeja:['O APARADOR','Na bandeja, cada xícara vira se você pegar pela alça e arrastar. Com ela virada, raspe o fundo com o dedo, como raspadinha. Arrastar a xícara pelo corpo troca ela de lugar: os sinais dos fundos, em ordem, contam alguma coisa. Novidade: um toque rápido num objeto tira uma foto dele. A foto vai para o seu inventário, no clipe 📎 da conversa, e pode ser anexada a outro jogador.'],
-  escrivaninha:['A ESCRIVANINHA','Há muitos papéis escritos à mão. Chegue perto com o celular (ou abra com dois dedos) para ler. As gavetas se abrem arrastando para a frente. Lembre: um toque rápido num papel tira a foto dele.'],
+  bandeja:['O APARADOR','Na bandeja, cada xícara vira se você pegar pela alça e arrastar. Com ela virada, raspe o fundo com o dedo, como raspadinha. Arrastar a xícara pelo corpo troca ela de lugar: os sinais dos fundos, em ordem, contam alguma coisa.'],
+  escrivaninha:['A ESCRIVANINHA','Há muitos papéis escritos à mão. Chegue perto com o celular (ou abra com dois dedos) para ler. As gavetas se abrem arrastando para a frente.'],
   relogio:['O RELÓGIO','Gire o relógio com um dedo e olhe por todos os lados, até de cima e de baixo. As portas de vidro se abrem com um toque. Se for a sua vez: para parar o pêndulo, segure-o com o dedo até ele morrer; para religar, puxe-o de lado e solte.'],
-  farol:['O FAROL','Gire o farol com um dedo e procure a portinha na torre. O cadeado tem quatro rodinhas de números: toque nele, acerte o código e toque em Abrir. O livro se abre pela capa, arrastando, e um toque na página tira a foto dela.'],
+  farol:['O FAROL','Gire o farol com um dedo e procure a portinha na torre. O cadeado tem quatro rodinhas de números: toque nele, acerte o código e toque em Abrir. O livro se abre pela capa, arrastando.'],
   jardim:['O JARDIM','Aqui nada se mexe: é para olhar. Gire com um dedo e chegue perto com dois. As placas dizem qual porta é qual.'],
-  quarto:['O QUARTO','Gire com um dedo e chegue perto. Um toque rápido num objeto tira a foto dele para o inventário.']};
+  quarto:['O QUARTO','Gire com um dedo e chegue perto.']};
+var FOTO_PECAS=['bandeja','escrivaninha','farol','quarto'];
+var FOTO_NOVIDADE='Novidade: um toque rápido num objeto tira uma foto dele. A foto vai para o seu inventário, no clipe 📎 da conversa, e pode ser anexada a outro jogador.';
 var novidadeVista={};
-function antesDaPeca(id,abrir){if(novidadeVista[id]||!NOVIDADES[id]){abrir();return}novidadeVista[id]=true;avisouFoto=true;janela(NOVIDADES[id][0],NOVIDADES[id][1],abrir)}
+/* SUBSTITUIDO 25/10: function antesDaPeca(id,abrir){…novidadeVista[id]=true;avisouFoto=true;janela(NOVIDADES[id][0],NOVIDADES[id][1],abrir)} */
+function antesDaPeca(id,abrir){if(novidadeVista[id]||!NOVIDADES[id]){abrir();return}novidadeVista[id]=true;
+  var txt=NOVIDADES[id][1];if(!avisouFoto&&FOTO_PECAS.indexOf(id)>=0){txt+=' '+FOTO_NOVIDADE;avisouFoto=true}
+  janela(NOVIDADES[id][0],txt,abrir)}
 
 /* ── Caixa dos papéis: aparece quando o jogador fecha "A casa está aberta".
    Mostra os convocados da lista do proprietário (a Acompanhante não está na
