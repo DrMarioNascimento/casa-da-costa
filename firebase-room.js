@@ -100,7 +100,7 @@ function formaAtual(){return document.querySelector('input[name="drForma"]:check
 function menu(error=''){
   /* Celular gate: só Abrir | Entrar. Ensaiar fica na porta Solo do hub; Telão
      na porta Telão do hub. Sem segundo seletor de modo aqui. */
-  gate().innerHTML=`<div class="dr-shell"><div class="dr-brand">DRAGON GAMES · ${esc(TITLE)}</div><div class="dr-card pf-card"><h1>${esc(TITLE)}</h1><p>O Mestre abre a mesa neste celular. Os jogadores entram pelo QR ou pelo código. O telão, se houver, entra pela porta Telão do hub com o mesmo código.</p>${error?`<div class="dr-error">${esc(error)}</div>`:''}<button class="dr-btn" id="drOpen">Abrir uma mesa</button><button class="dr-btn secondary" id="drJoin">Entrar em uma mesa</button></div></div>`;
+  gate().innerHTML=`<div class="dr-shell"><div class="dr-brand">DRAGON GAMES · ${esc(TITLE)}</div><div class="dr-card pf-card"><div data-qr-intro><div data-qr-copy><h1>${esc(TITLE)}</h1><p>O Mestre abre a mesa neste celular. Os jogadores entram pelo QR ou pelo código. O telão, se houver, entra pela porta Telão do hub com o mesmo código.</p></div><div data-acesso-qr-slot></div></div>${error?`<div class="dr-error">${esc(error)}</div>`:''}<button class="dr-btn" id="drOpen">Abrir uma mesa</button><button class="dr-btn secondary" id="drJoin">Entrar em uma mesa</button></div></div>`;
   document.getElementById('drOpen').onclick=()=>{intencao='sala';renderMasterGate()};
   document.getElementById('drJoin').onclick=()=>formEntrar('');
 }
