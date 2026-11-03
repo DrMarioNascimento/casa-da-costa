@@ -783,7 +783,7 @@ button:active,.caixa:active,.redondo:active,.chip:active{
 /* o ícone das peças da RA fica no canto de cima: o título longo (três linhas) subia por baixo dele */
 .peca{padding-top:48px}
 </style>
-</head>
+<script src="../assistencia-telas.js?v=assistencia-20261103"></script></head>
 <body>
 <div class="scene" aria-hidden="true"></div>
 <div class="rain" aria-hidden="true"></div>
@@ -1223,12 +1223,16 @@ function bolha(m){
   var op='';
   return '<div class="msg'+(eu?' eu':'')+(m.op?' op':'')+'"><div class="bolha'+(m.marca?' marcada':'')+'" data-mid="'+idMsg(m)+'">'+quem+op+(m.txt||'')+anexo+'<span class="hora">'+(m.h||hora())+'</span></div></div>';
 }
-function pintarGrupo(){
+
+// Só acompanha novas mensagens se a pessoa já estava perto do fim.
+function posicaoLeitura(el,chave){var mudou=chave!==undefined&&el.dataset.conversaAnterior!==String(chave);if(chave!==undefined)el.dataset.conversaAnterior=String(chave);return {top:el.scrollTop,fim:mudou||el.scrollHeight-el.clientHeight-el.scrollTop<80};}
+function restaurarLeitura(el,p){el.scrollTop=p.fim?el.scrollHeight:p.top;}
+function pintarGrupo(){var posLeitura=posicaoLeitura($('#chatGrupo'));
   var serv=SOU_FUNC&&(!encontroFeito||verServ);
   $('#grupoTopo').innerHTML=(serv?'Grupo do serviço · <b>'+SLOTS_SERV.length+(SLOTS_SERV.length>1?' números':' número')+'</b>':'Grupo da casa · <b>'+membros().length+' números</b>')+
     (SOU_FUNC&&encontroFeito?' · <button type="button" id="trocarGrupo" style="background:none;border:0;color:inherit;text-decoration:underline;cursor:pointer;font:inherit">ver '+(serv?'o da casa':'o do serviço')+'</button>':'');
   if($('#trocarGrupo'))$('#trocarGrupo').onclick=function(){verServ=!verServ;pintarGrupo()};
-  var el=$('#chatGrupo');el.innerHTML=(serv?grupoServ:grupo.slice(grupoVisivelDesde)).map(bolha).join('');el.scrollTop=el.scrollHeight}
+  var el=$('#chatGrupo');el.innerHTML=(serv?grupoServ:grupo.slice(grupoVisivelDesde)).map(bolha).join('');restaurarLeitura(el,posLeitura)}
 
 /* ── Privadas ────────────────────────────────────────────────────────── */
 var abertaPriv=null;
@@ -1253,7 +1257,7 @@ function abrirPriv(f){
   $('#convNome').innerHTML=nomeDe(f);$('#convAvatar').innerHTML=SIL;$('#convNome').style.color=CORES[f];
   pintarConv();pintarListaPriv();
 }
-function pintarConv(){var el=$('#chatPriv');el.innerHTML=privadas[abertaPriv].msgs.map(bolha).join('')||'<div class="dia">CONVERSA PRIVADA</div>';el.scrollTop=el.scrollHeight}
+function pintarConv(){var posLeitura=posicaoLeitura($('#chatPriv'),abertaPriv);var el=$('#chatPriv');el.innerHTML=privadas[abertaPriv].msgs.map(bolha).join('')||'<div class="dia">CONVERSA PRIVADA</div>';restaurarLeitura(el,posLeitura)}
 $('#voltarPriv').onclick=function(){abertaPriv=null;$('#convPriv').hidden=true;$('#listaPriv').hidden=false;pintarListaPriv()};
 
 var ordemPriv=0;
@@ -4250,5 +4254,5 @@ pintarGrupo();pintarListaPriv();
   window.mosaicoNomeSolo=function(){return inp.value.trim().replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});};
 })();
 </script>
-</body>
+<script defer src="../caminho-ra.js?v=assistencia-20261103" data-guia="impostor" data-jogo="casa"></script></body>
 </html>

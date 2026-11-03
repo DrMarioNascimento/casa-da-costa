@@ -46,7 +46,7 @@
      quando houver, fecha o passo assim que a pessoa toca no alvo. */
   var PASSOS = [
     { id: "elenco", rot: "O seu personagem",
-      txt: "A tela vai se explicar aos poucos, cada coisa na hora em que aparecer; nada aqui segura o jogo. Este é o seu personagem nesta noite: guarde para você e toque em OK.",
+      txt: "A ajuda explica uma tela por vez. Use Próximo e Voltar; Agora não recolhe a ajuda, e você pode revê-la depois. Este é o seu personagem nesta noite: guarde para você e toque em OK.",
       quando: function () { return tela() === "encenacao" && /O SEU PERSONAGEM/i.test(texto("#app")); },
       alvo: function () { return botaoCom("OK"); } },
     { id: "caso", geral: true, rot: "🔎 Caso",
@@ -131,6 +131,25 @@
       quando: function () { return fs() === "decision"; } }
   ];
   if (solo() || (!global.STATE && /\/solo\//.test(location.pathname))) PASSOS = PASSOS_SOLO;
+
+
+  // Percurso v2: ajuda reversível e sem avanço por tempo ou rolagem automática.
+  if (global.AssistenciaTela) {
+    var ajuda = global.AssistenciaTela;
+    function atualizarAjuda() {
+      if (document.hidden) return;
+      if (!(global.STATE && STATE.eu && global.CASO_PRONTO) || visivel('#dragonRoomGate') || visivel('#abertura') || visivel('#abCasa') || visivel('#mosaicoOpening') || visivel('#mosaicoPrep') || visivel('iframe') || visivel('dialog[open]') || visivel('.modal-fundo')) { ajuda.suspender('aprendizado'); return; }
+      var disponiveis = PASSOS.filter(function(p) { try { return p.quando(); } catch (_) { return false; } });
+      disponiveis.sort(function(a,b){return Number(!!a.geral)-Number(!!b.geral);});
+      if(!disponiveis.length) { ajuda.suspender('aprendizado'); return; }
+      ajuda.definir('CasaAprendizado:'+tela()+':'+disponiveis.map(function(p){return p.id;}).join(','), disponiveis,
+        {titulo:disponiveis[0].rot.replace(/[🔎🗂]/gu,''),dono:'aprendizado',automatico:!disponiveis[0].alto});
+    }
+    setInterval(atualizarAjuda,700); atualizarAjuda();
+    global.CasaAprendizado = {passos:function(){return PASSOS.map(function(p){return p.id;});},atual:ajuda.atual,
+      vistos:function(){return [];},zerar:function(){var id=ajuda.atual();if(id)ajuda.esquecer(id);ajuda.rever();}};
+    return;
+  }
 
   var css = document.createElement("style");
   css.textContent =
